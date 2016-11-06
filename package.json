@@ -1,0 +1,32 @@
+{
+    "name": "Suord",
+    "version": "1.0.0",
+    "author": "Pablo A. Mayobre (Positive07) Franco G. Mazzocca (Ralphref)",
+    "summary": "Software de ubicacion de operarios en tareas remotas",
+    "main": "app.js",
+    "repository": "https://github.com/Positive07/Suord",
+    "description": "Aplicacion de Gardian",
+    "homepage": "https://github.com/Positive07/Suord",
+    "devDependencies": {
+        "electron": "^1.4.5",
+        "electron-connect": "^0.6.0",
+
+        "gulp": "^3.9.1",
+
+        "elm": "^0.17.1",
+        "gulp-elm": "^0.5.0",
+        "gulp-uglify": "^2.0.0",
+
+        "gulp-sass": "^2.3.2",
+        "gulp-autoprefixer": "^3.1.1",
+        "gulp-cssnano": "^2.1.2",
+
+        "gulp-plumber": "^1.1.0",
+        "gulp-sourcemaps": "2.2.0",
+    },
+    "dependencies": {},
+    "scripts": {
+        "gulp": "gulp",
+        "gulp build": "gulp build",
+    },
+}

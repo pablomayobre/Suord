@@ -1,0 +1,43 @@
+$FontPath: "./fonts" !default;
+$RobotoName: "Roboto" !default;
+$IconsName:  "Material" !default;
+
+@mixin fontdef-woff($FontPath, $FontName, $FontType:"Regular") {
+    src: url('#{$FontPath}/#{$FontName}-#{$FontType}.woff2') format('woff2'),
+}
+
+/* BEGIN ROBOTO */
+@font-face {
+    font-family: Roboto;
+    @include fontdef-woff($FontPath, $RobotoName, "Regular");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: Roboto;
+    @include fontdef-woff($FontPath, $RobotoName, "Regular");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Roboto;
+    @include fontdef-woff($FontPath, $RobotoName, "Medium");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: Roboto;
+    @include fontdef-woff($FontPath, $RobotoName, "Light");
+    font-weight: 300;
+    font-style: normal;
+}
+/* END ROBOTO */
+
+/* BEGIN MATERIAL ICONS */
+@font-face {
+    font-family: Material Design Icons;
+    @include fontdef-woff($FontPath, $IconsName, "Icons");
+    font-weight: normal;
+    font-style: normal;
+}
+/* END MATERIAL ICONS */
