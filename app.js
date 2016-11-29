@@ -33,8 +33,8 @@ app.on('window-all-closed', function() {
 });
 
 var autoUpdate = function (win){
-    if (debug.isDev())
-        return;
+    /*if (debug.isDev())
+        return;*/
 
     const platform = os.platform();
     if (platform === "linux")
