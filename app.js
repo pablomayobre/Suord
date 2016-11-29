@@ -6,14 +6,16 @@ var app = electron.app;  // Module to control application life.
 if(require('./electron-modules/squirrel-startup.js')) app.quit();
 
 var BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
+
+//Autoupdate
 var dialog = electron.dialog;
 var os = require('os');
-var autoUpdater = electron.autoUpdater;
+var autoUpdater = require('electron-auto-updater');
 
 var debug = require('./electron-modules/debug.js');
 //var client = require('electron-connect').client;
 
-debug({showDevTools: true});
+debug({enabled: true, showDevTools: true});
 
 var ipcMain = electron.ipcMain;
 ipcMain.once("dev", function (e, arg){
