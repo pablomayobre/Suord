@@ -38,10 +38,8 @@
 
         &::before, &::after {
         	content: '';
-        	height: 2px;
-        	width: 0;
-        	bottom: 1px;
-        	position: absolute;
+            @include size(0, 2px);
+            @include absolute(bottom 1px);
         	background: color-primary();
         	transition: all 0.2s ease;
         }
@@ -77,7 +75,11 @@
 
     /* Animations */
     @keyframes inputHighlighter {
-    	from { background: #4a89dc; }
-    	to 	{ width: 0; background: transparent; }
+    	from {
+            background: #4a89dc;
+        }
+    	to 	{
+            width: 0; background: transparent;
+        }
     }
 }

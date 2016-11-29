@@ -108,7 +108,7 @@
 
         });
 
-        $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+        $ripples.on('animationend webkitAnimationEnd', function(e) {
             $(this).removeClass('is-active');
         });
 
@@ -187,7 +187,6 @@
         });
 
         ipcRenderer.send("dev", "ready");
-
     </script>
 </body>
 

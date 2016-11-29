@@ -3,18 +3,11 @@
 var electron = require('electron');
 var app = electron.app;  // Module to control application life.
 
+//Squirrel Handler
 if(require('./electron-modules/squirrel-startup.js')) app.quit();
 
-var BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
-
-//Autoupdate
-var dialog = electron.dialog;
-var os = require('os');
-var autoUpdater = require('electron-auto-updater').autoUpdater;
-
+//Debugging
 var debug = require('./electron-modules/debug.js');
-//var client = require('electron-connect').client;
-
 debug({showDevTools: true});
 
 var ipcMain = electron.ipcMain;
@@ -23,18 +16,10 @@ ipcMain.once("dev", function (e, arg){
         e.sender.send("dev", debug.isDevEnabled());
 });
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is GCed.
-var mainWindow = null;
-
-// Quit when all windows are closed.
-app.on('window-all-closed', function() {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform != 'darwin') {
-        app.quit();
-    }
-});
+//Autoupdate
+var dialog = electron.dialog;
+var os = require('os');
+var autoUpdater = require('electron-auto-updater').autoUpdater;
 
 var autoUpdate = function (win){
     if (debug.isDev())
@@ -75,13 +60,30 @@ var autoUpdate = function (win){
     });
 }
 
+//Window
+var BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
+
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is GCed.
+var mainWindow = null;
+
+// Quit when all windows are closed.
+app.on('window-all-closed', function() {
+    // On OS X it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform != 'darwin') {
+        app.quit();
+    }
+});
+
 var createWindow = function() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
         title: "Suord",
         minWidth: 800,
         minHeight: 600,
-        show: false
+        show: false,
+        backgroundColor: "#03a9f4";
     });
 
     mainWindow.setMenu(null);
