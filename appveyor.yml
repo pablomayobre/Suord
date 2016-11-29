@@ -19,7 +19,7 @@ install:
   - npm install -g npm@latest
   - set PATH=%APPDATA%\npm;%PATH%
   - npm install electron-builder
-  - npm install gulp-cli
+  - npm install gulp-cli -g
   - npm install
   - npm prune
 matrix:

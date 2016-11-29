@@ -27,7 +27,7 @@ before_install:
 install:
 - nvm install 6
 - npm install electron-builder
-- npm install gulp-cli
+- npm install gulp-cli -g
 - npm install
 - npm prune
 script:
