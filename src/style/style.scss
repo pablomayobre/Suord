@@ -1,0 +1,36 @@
+$animation-delay: 350ms;
+
+$drawer-zindex: 6;
+$toolbarzindex: 7;
+$form-zindex: 8;
+$overlay-zindex: 9;
+$modal-zindex: 10;
+
+body {
+    background: #eee;
+    overflow: hidden;
+    z-index: 0;
+}
+
+* {
+    box-sizing:border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Roboto;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+//Base variables and mixins
+@import "base/_fonts.scss";
+@import "base/_icons.scss";
+@import "base/_mixins.scss";
+@import "base/_colors.scss";
+//Basic elements
+@import "elements/_input.scss";
+@import "elements/_button.scss";
+@import "elements/_searchbar.scss";
+//Actual layout
+@import "_login.scss";
+@import "_header.scss";
+@import "_drawer.scss";

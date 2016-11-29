@@ -1,5 +1,5 @@
 $mdi-font-size-base:   24px !default;
-$mdi-css-prefix:       mdi !default;
+$mdi-css-prefix:       i !default;
 
 $mdi-icons: (
     "access-point": F002,
@@ -1734,7 +1734,6 @@ $mdi-icons: (
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     transform: translate(0, 0);
 }
 /* END BASE STYLE */

@@ -1,0 +1,30 @@
+os: unstable
+platform:
+  - x64
+init:
+  - git config --global core.autocrlf input
+cache:
+  - node_modules
+  - app\node_modules
+  - '%APPDATA%\npm-cache'
+  - '%USERPROFILE%\.electron'
+environment:
+  GH_TOKEN:
+      secure: bXpDrAdIegR4vXueea1h+atdZdkZj1WzyjAt8geQmgQhQxk2QD92Dcu4z+5wXS9f
+  matrix:
+    - nodejs_version: 6
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - set CI=true
+  - npm install -g npm@latest
+  - set PATH=%APPDATA%\npm;%PATH%
+  - npm install electron-builder
+  - npm install
+  - npm prune
+matrix:
+  fast_finish: true
+test: off
+shallow_clone: true
+clone_depth: 1
+build_script:
+  - npm run build

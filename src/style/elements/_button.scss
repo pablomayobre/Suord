@@ -1,0 +1,186 @@
+//This stuff handles colors and shadows for the different styles
+@mixin raised-flat ($color, $darker) {
+    color: $color;
+
+    &.raised, &.fab {
+        background-color: $color;
+        color: #FFF;
+
+        &:active {
+            background-color: $darker;
+        }
+    }
+
+    &.raised {
+        @include material-shadow(1);
+
+        &:active {
+            @include material-shadow(2);
+        }
+    }
+
+    &.fab {
+        @include material-shadow(3);
+
+        &:active {
+            @include material-shadow(4);
+        }
+    }
+}
+
+/* Button */
+button {
+    //Dimensions
+    min-width: 88px;
+    padding: 0 16px;
+    line-height: 36px;
+    border: 0;
+    border-radius: 2px;
+    //Text
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    //Display
+    overflow: hidden;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    z-index: 1;
+
+    //Colors
+    background-color: transparent;
+    &.primary {
+        @include raised-flat(color-primary(), color-primary('700'));
+    }
+    &.accent {
+        @include raised-flat(color-accent(), color-accent('700'));
+    }
+
+    &.icon {
+        min-width: 0;
+        border-radius: 50%;
+        @include size(40px);
+        margin: 4px;
+        line-height: 40px;
+        //padding: 0 8px;
+        text-align: left;
+        padding: 0;
+
+        &::before {
+            text-align: center;
+            position: static;
+            margin: 0;
+            margin-right: 12px;
+            @include size(40px);
+        }
+
+        label {
+            vertical-align: top;
+            text-transform: none;
+            font-weight: 400;
+            display: inline-block;
+        }
+
+        .expanded nav & {
+            width: 100%;
+            height: 48px;
+            line-height: 48px;
+            border-radius: 0;
+            margin: 0;
+
+            &::before {
+                margin: 4px 12px;
+                line-height: 40px;
+            }
+        }
+    }
+
+    //FAB
+    &.fab {
+        @include size(56px);
+        padding: 16px;
+
+        //Little
+        &.mini {
+            @include size(40px);
+            padding: 8px;
+        }
+
+        //Size
+        border-radius: 50%;
+        min-width: 0;
+        //Icon
+        font-size: 24px;
+        line-height: 1;
+    }
+
+    //Material Design Icons
+    &.fab::before, &.icon::before {
+        display: inline-block;
+        font-family: 'Material Design Icons';
+        font-size: 24px;
+        font-weight: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        transform: translate(0, 0);
+    }
+
+    /* Focus layer */
+    &:hover, &:focus, &.selected {
+        outline: 0;
+
+        &::after {
+            content: "";
+            display: block;
+            @include size(100%);
+            @include absolute(top 0 left 0);
+            background-color: rgba(0, 0, 0, 0.12)
+        }
+    }
+}
+
+/* Ripples */
+.ripples {
+    //The focus layer gets on top of this so we raise it
+    z-index: 2;
+
+    @include absolute(top 0 left 0);
+    @include size(100%);
+    overflow: hidden;
+    background: transparent;
+
+    .ripple {
+        @include absolute(top 50% left 50%);
+        transform: translate(-50%, -50%);
+        @include size(0);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+    &.black .ripple {
+        background-color: rgba(153, 153, 153, 0.4);
+    }
+    &.white .ripple {
+        background-color: rgba(204, 204, 204, 0.25);
+    }
+
+    &.is-active .ripple {
+        animation: ripples .4s ease-in;
+    }
+}
+
+/* Ripples animation */
+@keyframes ripples {
+  0% { opacity: 0; }
+
+  25% { opacity: 1; }
+
+  100% {
+    width: 200%;
+    padding-bottom: 200%;
+    opacity: 0;
+  }
+}

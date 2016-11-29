@@ -1,4 +1,4 @@
-#Suord
+# Suord
 Este programa es desarrollado para una organizacion privada.
 
 El objetivo es tener un software el cual corre localmente, al cual solo se puede acceder con verificacion por contraseña.
@@ -7,7 +7,7 @@ El mismo, permite al operario ingresar facilmente la tarea que se encuentra real
 
 Asi mismo el software permite al gerente actualizar las tareas, asi como tambien sus operarios en el caso de nuevos contratos o despidos.
 
-##Desarrollo
+## Desarrollo
 Este software sera desarrollado con Electron, el cual permite usar tecnologias Web de manera local.
 
 Como lenguaje se seleccionó Elm, el cual es compilado a JavaScript, este provee ventajas como el control sobre el tipo de variables, variables inmutables, unica fuente de verdad y demas.
@@ -20,7 +20,27 @@ En cuanto a la verificacion de usuarios esto se hará mediante las API de WebCry
 
 Para la sincronizacion y back-up de inforacion se utilizará una carpeta de Google Drive, la cual facilita el desarrollo y brinda mayor seguridad al sistema.
 
-##Licencia
+## Probar
+
+Para probar es necesario descargar el repositorio, para esto Git debe estar instalado, y en una consola de comandos se debe ejecutar:
+```Shell
+git clone git@github.com:Positive07/Suord.git
+cd Suord
+```
+
+Posteriormente con Node.js instalado se debe correr los siguientes comandos:
+```Shell
+npm install gulp-cli -g
+npm install electron -g
+npm install
+```
+
+Finalmente para iniciar la aplicacion:
+```Shell
+gulp
+```
+
+## Licencia
 Aunque el software se desarrolla para una empresa privada, el codigo, como referencia esta bajo la licencia MIT.
 
 Esto quiere decir que es posible modificar, redistribuir e incluso comercializar copias parciales del software.

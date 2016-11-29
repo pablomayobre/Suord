@@ -26,8 +26,8 @@ node_modules
 elm-stuff
 
 #Final Distribution directories
-app
 dist
+icon
 
 # Windows image file caches
 Thumbs.db

@@ -1,0 +1,52 @@
+.search {
+    @include size(auto, 48px);
+    @include material-shadow(1);
+
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: material-color("grey", "50");
+    color: material-color("grey", "400");
+    border-radius: 2px;
+    text-align: left;
+
+    i {
+        @include relative(top 0 left 0);
+        margin: 0 8px;
+
+        &::before {
+            line-height: 48px;
+            vertical-align:text-top;
+        }
+    }
+    .wrap {
+        height: 48px;
+        line-height: 48px;
+        flex-grow: 1;
+        position: relative;
+
+        input {
+            font-size: 16px;
+            width: 100%;
+            height: 48px;
+            border: none;
+            background: transparent;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        label {
+            @include absolute(top 0 left 0);
+            pointer-events: none;
+            transition: opacity $animation-delay ease;
+        }
+
+        input:focus ~ label, input.used ~ label {
+            opacity: 0;
+        }
+    }
+}

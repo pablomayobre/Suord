@@ -1,0 +1,55 @@
+//Some cool mixins I commonly use!
+// Use media queries like this:
+// @include media-query(800px) {
+//     header {
+//         padding: 16px;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
+
+//Use Material Shadows like this:
+//@include m-shadow(height);
+//Where height is a number between 1 and 5
+$m-shadows: (0 1px  3px  rgba(0,0,0,0.12), 0 1px  2px  rgba(0,0,0,0.24)),
+            (0 3px  6px  rgba(0,0,0,0.16), 0 3px  6px  rgba(0,0,0,0.23)),
+            (0 10px 20px rgba(0,0,0,0.19), 0 6px  6px  rgba(0,0,0,0.23)),
+            (0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)),
+            (0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22));
+@mixin material-shadow ($height){
+    box-shadow: nth($m-shadows, $height);
+}
+
+//Specify size in a single directive
+//@import size(width, height);
+@mixin size($width, $height: $width){
+    width: $width;
+    height: $height;
+}
+
+//Positioning made easier
+//Use it like:
+//@include position(absolute, top 4px left 10px right 0 bottom 14px);
+//Alternatively:
+//@include absolute(top 4px left 10px right 0 bottom 14px);
+@mixin position($position, $args) {
+  @each $o in top right bottom left {
+        $i: index($args, $o);
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number  {
+        #{$o}: nth($args, $i + 1);
+    }
+  }
+  position: $position;
+}
+@mixin absolute($args) {
+        @include position(absolute, $args);
+}
+@mixin fixed($args) {
+        @include position(fixed, $args);
+}
+@mixin relative($args) {
+        @include position(relative, $args);
+}

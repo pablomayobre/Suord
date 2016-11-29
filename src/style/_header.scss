@@ -1,0 +1,131 @@
+header {
+    @include fixed(top 0 right 0 left 0);
+    @include size(100%, 50%);
+
+    padding-top: 7.5%;
+    margin: 0;
+    text-align: center;
+    background-color: color-accent();
+    color: #FFF;
+    z-index: $toolbarzindex;
+
+    transition: all $animation-delay ease;
+
+    .logged & {
+        @include material-shadow(2);
+
+        background-color: color-primary();
+        transform: translate3d(0, calc(64px - 100%), 0);
+    }
+}
+
+.app {
+    transition: visibility 0s linear 0s;
+
+    .logged & {
+        visibility: hidden;
+        transition: visibility 0s linear $animation-delay;
+    }
+
+    h1 {
+        font-size: 56px;
+        line-height: 64px;
+        vertical-align: text-bottom;
+        display: inline;
+    }
+
+    img {
+        @include size(64px);
+
+        display: inline;
+    }
+}
+
+.toolbar {
+    @include absolute(bottom 0 left 0 right 0);
+    @include size(100%, 64px);
+
+    display: flex;
+    padding: 8px;
+    text-align: left;
+    opacity: 0;
+
+    transition: all $animation-delay ease;
+
+    .logged & {
+        opacity: 1;
+    }
+
+    h2 {
+        vertical-align: top;
+        display: inline-block;
+        margin: 0;
+        line-height: 48px;
+        font-size: 20px;
+        font-weight: 500;
+        padding: 0 8px;
+    }
+
+    .icon.mdi-filter {
+        display: inline-block;
+        position: relative;
+        margin: 0;
+    }
+
+    .icon:hover, .icon:focus {
+        &::after {
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+    }
+}
+
+button#hamburger.icon {
+    position: relative;
+
+    min-width: 0;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    padding: 8px;
+    text-align: center;
+
+    .lines {
+        height: 2px;
+        top: 45%;
+
+        .expanded & {
+            transform: rotate3d(0, 0, 1, -180deg);
+        }
+
+        &, &::before, &::after {
+            cursor: pointer;
+            width: 100%;
+            background: #FFF;
+            position: relative;
+            display: block;
+            content: '';
+            transition: transform $animation-delay ease-in-out;
+        }
+
+        &::before, &::after {
+            transform-origin: 98%;
+            height: 100%
+        }
+
+        &::before {
+            top: -5px;
+
+            .expanded & {
+                transform: translate3d(0, 5px, 0) rotate3d(0, 0, 1, 45deg) scale3d(0.65, 1, 1);
+            }
+        }
+
+        &::after {
+            bottom: -3px;
+
+            .expanded & {
+                transform: translate3d(0, -5px, 0) rotate3d(0, 0, 1, -45deg) scale3d(0.65, 1, 1);
+            }
+        }
+    }
+}
