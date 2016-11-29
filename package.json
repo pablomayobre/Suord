@@ -41,7 +41,7 @@
   },
   "scripts": {
     "gulp": "gulp",
-    "build": "gulp build && build --ia32 --x64 --publish onTagOrDraft"
+    "build": "build --ia32 --x64 --publish onTagOrDraft"
   },
   "babel": {
     "presets": [

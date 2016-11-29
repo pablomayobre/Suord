@@ -19,6 +19,7 @@ install:
   - npm install -g npm@latest
   - set PATH=%APPDATA%\npm;%PATH%
   - npm install electron-builder
+  - npm install gulp-cli
   - npm install
   - npm prune
 matrix:
@@ -27,4 +28,5 @@ test: off
 shallow_clone: true
 clone_depth: 1
 build_script:
+  - gulp build
   - npm run build
