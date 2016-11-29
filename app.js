@@ -11,7 +11,7 @@ var dialog = electron.dialog;
 var debug = require('./electron-modules/debug.js');
 //var client = require('electron-connect').client;
 
-debug({enabled: true, showDevTools: true});
+debug({showDevTools: true});
 
 var ipcMain = electron.ipcMain;
 ipcMain.once("dev", function (e, arg){
