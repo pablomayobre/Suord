@@ -10,6 +10,19 @@ body {
     background: #eee;
     overflow: hidden;
     z-index: 0;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+
+    animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 * {
