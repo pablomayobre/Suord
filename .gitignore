@@ -27,6 +27,7 @@ elm-stuff
 
 #Final Distribution directories
 dist
+app
 icon
 
 # Windows image file caches

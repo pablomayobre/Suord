@@ -114,17 +114,41 @@ gulp.task("js:modules", function () {
         .pipe(gulp.dest("app/electron-modules/"))
 });
 
+var jeditor = require("gulp-json-editor")
+gulp.task("json", function () {
+    return gulp.src("package.json")
+        .pipe(jeditor(function (json){
+            json.devDependencies = undefined;
+            json.elmDeps = undefined;
+            json.scripts = undefined;
+            json.babel = undefined;
+            json.build = undefined;
+            json.dependencies = {};
+            json.dependencies["electron-auto-updater"] = "^0.6.2";
+
+            return json;
+        }))
+        .pipe(gulp.dest("app/"))
+});
+
+var install = require("gulp-install");
+gulp.task("dependencies", ["json"], function () {
+    return gulp.src("app/package.json")
+        .pipe(install());
+})
+
 gulp.task("js",   ["js:script", "js:app", "js:modules"]);
 gulp.task("copy", ["copy:font", "copy:image", "copy:html"]);
 
-gulp.task("build", ["copy", "style", "js"/*, "elm"*/]);
+gulp.task("build", ["dependencies", "copy", "style", "js"/*, "elm"*/]);
 
-gulp.task("reload:font",   ["copy:font" ], electron.restart);
-gulp.task("reload:image",  ["copy:image"], electron.restart);
-gulp.task("reload:html",   ["copy:html" ], electron.restart);
-gulp.task("reload:script", ["js:script" ], electron.restart);
-gulp.task("reload:app",    ["js:app"    ], electron.restart);
-gulp.task("reload:modules",["js:modules"], electron.restart);
+gulp.task("reload:json",   ["dependencies"], electron.restart);
+gulp.task("reload:font",   ["copy:font"   ], electron.restart);
+gulp.task("reload:image",  ["copy:image"  ], electron.restart);
+gulp.task("reload:html",   ["copy:html"   ], electron.restart);
+gulp.task("reload:script", ["js:script"   ], electron.restart);
+gulp.task("reload:app",    ["js:app"      ], electron.restart);
+gulp.task("reload:modules",["js:modules"  ], electron.restart);
 
 //This two can error
 gulp.task("reload:style",  ["style", "copy:html"], electron.restart);
@@ -135,6 +159,7 @@ gulp.task("default", ["build"], function() {
     electron.start();
 
     // Reload browser process
+    gulp.watch("package.json",          ["reload:json"  ]);
     gulp.watch("src/fonts/*",           ["reload:font"  ]);
     gulp.watch("src/images/*",          ["reload:image" ]);
     gulp.watch("src/index.html",        ["reload:html"  ]);

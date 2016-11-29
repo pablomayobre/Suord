@@ -62,6 +62,7 @@ var autoUpdate = function (win){
             title: "Actualización disponible",
             type: "info",
             detail: `La version ${releaseName} ya se ha descargado, y se instalará la proxima vez que abra Suord`,
+            buttons: ["Aceptar"]
         })
     });
 
