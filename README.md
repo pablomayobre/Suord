@@ -1,4 +1,4 @@
-# Suord ![Icon](https://github.com/Positive07/Suord/raw/master/build/icon.png)
+# ![Icon](https://github.com/Positive07/Suord/raw/master/src/image/icon.png) Suord
 [![Build Status](https://travis-ci.org/Positive07/Suord.svg?branch=master)](https://travis-ci.org/Positive07/Suord) [![Build status](https://ci.appveyor.com/api/projects/status/t0l7gvnrengiw1va?svg=true)](https://ci.appveyor.com/project/Positive07/suord)
 
 Este programa es desarrollado para una organizacion privada.

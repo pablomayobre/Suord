@@ -10,7 +10,7 @@ var BrowserWindow = electron.BrowserWindow;  // Module to create native browser 
 //Autoupdate
 var dialog = electron.dialog;
 var os = require('os');
-var autoUpdater = require('electron-auto-updater');
+var autoUpdater = require('electron-auto-updater').autoUpdater;
 
 var debug = require('./electron-modules/debug.js');
 //var client = require('electron-connect').client;
@@ -44,19 +44,19 @@ var autoUpdate = function (win){
     if (platform === "linux")
         return;
 
-    autoUpdater.addEventListener("update-available", function(e){
+    autoUpdater.on("update-available", function(e){
         console.log("update-available", e);
     });
-    autoUpdater.addEventListener("error", function(e){
+    autoUpdater.on("error", function(e){
         console.log("error", e);
     });
-    autoUpdater.addEventListener("checking-for-update", function(e){
+    autoUpdater.on("checking-for-update", function(e){
         console.log("checking-for-update", e);
     });
-    autoUpdater.addEventListener("update-not-available", function(e){
+    autoUpdater.on("update-not-available", function(e){
         console.log("update-not-available", e);
     });
-    autoUpdater.addEventListener("update-downloaded", function (e, releaseNotes, releaseName, releaseDate, updateURL) {
+    autoUpdater.on("update-downloaded", function (e, releaseNotes, releaseName, releaseDate, updateURL) {
         console.log("update-downloaded", e);
         dialog.showMessageBox(win, {
             title: "Actualización disponible",
