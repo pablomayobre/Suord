@@ -13,12 +13,12 @@ var autoUpdater = electron.autoUpdater;
 var debug = require('./electron-modules/debug.js');
 //var client = require('electron-connect').client;
 
-debug({enabled: true, showDevTools: true});
+debug({showDevTools: true});
 
 var ipcMain = electron.ipcMain;
 ipcMain.once("dev", function (e, arg){
     if (arg == "ready")
-        e.sender.send("dev", debug.isDev());
+        e.sender.send("dev", debug.isDevEnabled());
 });
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -35,8 +35,8 @@ app.on('window-all-closed', function() {
 });
 
 var autoUpdate = function (win){
-    /*if (debug.isDev())
-        return;*/
+    if (debug.isDev())
+        return;
 
     const platform = os.platform();
     if (platform === "linux")

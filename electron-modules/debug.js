@@ -48,7 +48,7 @@ function inspectElements() {
 	}
 }
 
-var isDevAndEnabled = true;
+var isDevEnabled = true;
 
 module.exports = opts => {
 	opts = Object.assign({
@@ -57,7 +57,7 @@ module.exports = opts => {
 	}, opts);
 
 	if (opts.enabled === false || (opts.enabled === null && !isDev)) {
-        isDevAndEnabled = false;
+        isDevEnabled = false;
 		return;
 	}
 
@@ -92,4 +92,5 @@ module.exports = opts => {
 module.exports.refresh = refresh;
 module.exports.devTools = devTools;
 module.exports.openDevTools = openDevTools;
-module.exports.isDev = function () { return isDevAndEnabled };
+module.exports.isDev = function () { return isDev };
+module.exports.isDevEnabled = function () { return isDevEnabled };
