@@ -83,7 +83,7 @@ var createWindow = function() {
         minWidth: 800,
         minHeight: 600,
         show: false,
-        backgroundColor: "#03a9f4";
+        backgroundColor: "#03a9f4"
     });
 
     mainWindow.setMenu(null);
