@@ -30,6 +30,9 @@ install:
 - npm install gulp-cli -g
 - npm install
 - npm prune
+- cd app
+- npm install
+- cd ..
 script:
 - gulp build
 - npm run build

@@ -12,11 +12,14 @@
             "name":"Franco G. Mazzocca (Ralphref)",
             "email":"francogabrielmazzocca@gmail.com"
         }
-    ],    "email": "pablo.a.mayobre@gmail.com",
+    ],
     "summary": "Software de ubicacion de operarios en tareas remotas",
     "main": "app.js",
     "repository": "https://github.com/Positive07/Suord",
     "description": "Aplicacion de Gardian",
     "homepage": "https://github.com/Positive07/Suord",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "electron-auto-updater":"^0.6.2"
+    }
 }

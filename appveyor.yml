@@ -22,6 +22,9 @@ install:
   - npm install gulp-cli -g
   - npm install
   - npm prune
+  - cd app
+  - npm install
+  - cd ..
 matrix:
   fast_finish: true
 test: off

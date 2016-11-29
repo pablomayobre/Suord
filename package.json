@@ -58,9 +58,6 @@
       "target": [
         "AppImage",
         "deb",
-        "rpm",
-        "freebsd",
-        "pacman",
         "tar.xz"
       ],
       "synopsis": "Aplicacion de Gardian",
@@ -68,12 +65,10 @@
       "desktop": "./build/Suord.desktop"
     },
     "win": {
+      "target": "nsis",
+      "remoteReleases": "https://github.com/Positive/Suord",
+      "publish": ["github"],
       "owner":"Pablo Mayobre <pablo.a.mayobre@gmail.com>",
-      "target": [
-        "nsis",
-        "squirrel",
-        "zip"
-      ],
       "iconUrl": "(windows-only) https link to icon"
     },
     "mac": {
@@ -85,9 +80,5 @@
     "nsis": {
       "language": 11274
     },
-    "squirrelWindows": {
-      "remoteReleases": true,
-      "msi": true
-    }
   }
 }
