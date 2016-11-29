@@ -6,6 +6,7 @@ var app = electron.app;  // Module to control application life.
 if(require('./electron-modules/squirrel-startup.js')) app.quit();
 
 var BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
+var dialog = electron.dialog;
 
 var debug = require('./electron-modules/debug.js');
 //var client = require('electron-connect').client;
@@ -50,11 +51,11 @@ var autoUpdate = function (win){
     });
     */
     autoUpdater.addListener("update-downloaded", function (e, releaseNotes, releaseName, releaseDate, updateURL) {
-        win.webContents.send(
-            "update",
-            "A new update is ready to install",
-            `Version ${releaseName} is downloaded and will be automatically installed on Quit`
-        );
+        dialog.showMessageBox(win, {
+            title: "Actualización disponible",
+            type: "info",
+            detail: `La version ${releaseName} ya se ha descargado, y se instalará la proxima vez que abra Suord`,
+        })
     });
 
     /*const version = app.getVersion()
