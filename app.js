@@ -15,7 +15,7 @@ debug({enabled: true, showDevTools: true});
 var ipcMain = electron.ipcMain;
 ipcMain.once("dev", function (e, arg){
     if (arg == "ready")
-        e.sender.send("dev", !!debug.isDev());
+        e.sender.send("dev", debug.isDev());
 });
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -30,6 +30,41 @@ app.on('window-all-closed', function() {
         app.quit();
     }
 });
+
+var autoUpdate = function (win){
+    if (debug.isDev())
+        return;
+
+    const platform = os.platform();
+    if (platform === "linux")
+        return;
+
+    /*
+    autoUpdater.addListener("update-available", (event: any) => {
+    });
+    autoUpdater.addListener("error", (error: any) => {
+    });
+    autoUpdater.addListener("checking-for-update", function(e){
+    });
+    autoUpdater.addListener("update-not-available", function(e){
+    });
+    */
+    autoUpdater.addListener("update-downloaded", function (e, releaseNotes, releaseName, releaseDate, updateURL) {
+        win.webContents.send(
+            "update",
+            "A new update is ready to install",
+            `Version ${releaseName} is downloaded and will be automatically installed on Quit`
+        );
+    });
+
+    /*const version = app.getVersion()
+    if (platform === "darwin")
+        autoUpdater.setFeedURL(`https://${UPDATE_SERVER_HOST}/update/${platform}_${os.arch()}/${version}`)*/
+
+    win.webContents.once("did-frame-finish-load", function(){
+        autoUpdater.checkForUpdates();
+    });
+}
 
 var createWindow = function() {
     // Create the browser window.
@@ -56,6 +91,8 @@ var createWindow = function() {
         // when you should delete the corresponding element.
         mainWindow = null;
     });
+
+    autoUpdate(mainWindow);
 }
 
 // This method will be called when Electron has finished
