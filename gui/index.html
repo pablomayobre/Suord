@@ -88,78 +88,9 @@
 
         let screen = 'Services';
 
-        let vigilants = [
-          {
-            name: 'Franco Mazzocca',
-            assign: 'HACER LAS FUCKING TABLAS'
-          },
-          {
-            name: 'Pablo Mayobre',
-            assign: 'ESPERAR A FUCKING FRANCO'
-          },
-          {
-            name: 'Esperaar',
-            assign: 'SI ESPERAR ESPERAAAAAR'
-          }
-        ];
+        let vigilants = require('./json/vigilants.json');
 
-        let services = [
-          {
-            name: 'Agricola Lujan',
-            needs: 1,
-            has: 2,
-          },
-          {
-            name: 'Andreu',
-            needs: 8,
-            has: 5,
-          },
-          {
-            name: 'APROCAM',
-            needs: 1,
-            has: 1,
-          },
-          {
-            name: 'Ayres de Campo',
-            needs: 3,
-            has: 4,
-          },
-          {
-            name: 'Ballio',
-            needs: 1,
-            has: 0,
-          },
-          {
-            name: 'Barraca',
-            needs: 10,
-            has: 4,
-          },
-          {
-            name: 'BGA Tapiz',
-            needs: 2,
-            has: 2,
-          },
-          {
-            name: 'Bocard',
-            needs: 2,
-            has: 2,
-          },
-          {
-            name: 'Bodega Bondeguer',
-            needs: 2,
-            has: 3,
-          },
-          {
-            name: 'Casa Andreu',
-            needs: 1,
-            has: 2,
-          },
-          {
-            name: 'Casa Mc Donalds',
-            needs: 1,
-            has: 0,
-          },
-        ];
+        let services = require('./json/services.json');
 
         let lunr = window.lunr || require('./script/lunr.js')
         let index = {
@@ -293,7 +224,7 @@
               screen = 'Services';
               Content.ports.changeScreen.send(screen);
               Content.ports.showVigilants.send(range(vigilants.length));
-              $('#search').val = '';
+              $('#search').val('');
               $('body').addClass('servicesOn');
               $('body').removeClass('vigilantsOn');
               $('nav button.selected').removeClass('selected');
@@ -306,7 +237,7 @@
               screen = 'Vigilants';
               Content.ports.changeScreen.send(screen);
               Content.ports.showVigilants.send(range(vigilants.length));
-              $('#search').val = '';
+              $('#search').val('');
               $('body').addClass('vigilantsOn');
               $('body').removeClass('servicesOn');
               $('nav button.selected').removeClass('selected');

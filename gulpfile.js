@@ -86,6 +86,10 @@ gulp.task('copy:html', () =>
   gulp.src('gui/index.html')
     .pipe(gulp.dest('app/gui')));
 
+gulp.task('copy:json', () =>
+  gulp.src('gui/json/*.json')
+    .pipe(gulp.dest('app/gui/json')));
+
 // Minify all JS files
 gulp.task('js:script', () =>
   gulp.src('gui/script/*.js')
@@ -104,7 +108,7 @@ gulp.task('js:app', () =>
 
 const jeditor = require('gulp-json-editor');
 
-gulp.task('json', () =>
+gulp.task('package', () =>
   gulp.src('package.json')
     .pipe(jeditor((arg) => {
       const json = Object.assign({}, arg);
@@ -123,16 +127,16 @@ gulp.task('json', () =>
 
 const install = require('gulp-install');
 
-gulp.task('dependencies', ['json'], () =>
+gulp.task('dependencies', ['package'], () =>
   gulp.src('app/package.json')
     .pipe(install()));
 
 gulp.task('js', ['js:script', 'js:app']);
-gulp.task('copy', ['copy:font', 'copy:image', 'copy:html']);
+gulp.task('copy', ['copy:font', 'copy:image', 'copy:html', 'copy:json']);
 
 gulp.task('build', ['dependencies', 'copy', 'style', 'js', 'elm']);
 
-gulp.task('reload:json', ['dependencies'], electron.restart);
+gulp.task('reload:package', ['dependencies'], electron.restart);
 gulp.task('reload:font', ['copy:font'], electron.restart);
 gulp.task('reload:image', ['copy:image'], electron.restart);
 gulp.task('reload:html', ['copy:html'], electron.restart);

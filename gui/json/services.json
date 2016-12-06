@@ -1,0 +1,217 @@
+[
+  {
+    "name": "Agricola Lujan",
+    "needs": 1,
+    "has": 2
+  },
+  {
+    "name": "Andreu",
+    "needs": 8,
+    "has": 7
+  },
+  {
+    "name": "APROCAM",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "Ayres de Campo",
+    "needs": 3,
+    "has": 3
+  },
+  {
+    "name": "Ballio",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "Barraca",
+    "needs": 10,
+    "has": 9
+  },
+  {
+    "name": "Bodega Tapiz",
+    "needs": 2,
+    "has": 2
+  },
+  {
+    "name": "BOCARD",
+    "needs": 2,
+    "has": 3
+  },
+  {
+    "name": "Bodega Bodeguer",
+    "needs": 2,
+    "has": 2
+  },
+  {
+    "name": "Casa Andreu",
+    "needs": 1,
+    "has": 2
+  },
+  {
+    "name": "Casa Mc Donalds",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "DIAGEO Bodega Navarro Correas",
+    "needs": 3,
+    "has": 3
+  },
+  {
+    "name": "DIAGEO Finca Navarro Correas",
+    "needs": 4,
+    "has": 2
+  },
+  {
+    "name": "Doña Paula",
+    "needs": 3,
+    "has": 3
+  },
+  {
+    "name": "Ed Alto Belgrano",
+    "needs": 3,
+    "has": 2
+  },
+  {
+    "name": "Ed Las Palmas",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "Farmacia Amigorena",
+    "needs": 0,
+    "has": 0
+  },
+  {
+    "name": "Farmacia Lavalle",
+    "needs": 0,
+    "has": 0
+  },
+  {
+    "name": "Gamma",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "GENCO",
+    "needs": 3,
+    "has": 1
+  },
+  {
+    "name": "Indura",
+    "needs": 2,
+    "has": 2
+  },
+  {
+    "name": "Jugos Australes",
+    "needs": 1,
+    "has": 2
+  },
+  {
+    "name": "JUGOS Bodega San Martin",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "Kaiken",
+    "needs": 2,
+    "has": 3
+  },
+  {
+    "name": "Ledesma",
+    "needs": 4,
+    "has": 4
+  },
+  {
+    "name": "Barrio Liceo",
+    "needs": 3,
+    "has": 2
+  },
+  {
+    "name": "Manzano Historico",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "Maria Anotonieta",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "Mc Catamarca",
+    "needs": 2,
+    "has": 2
+  },
+  {
+    "name": "Mc Colon",
+    "needs": 2,
+    "has": 2
+  },
+  {
+    "name": "Mc Maipu",
+    "needs": 3,
+    "has": 3
+  },
+  {
+    "name": "Mc Palmares",
+    "needs": 2,
+    "has": 0
+  },
+  {
+    "name": "Mc Patricias",
+    "needs": 2,
+    "has": 2
+  },
+  {
+    "name": "Pinar del Sol",
+    "needs": 6,
+    "has": 2
+  },
+  {
+    "name": "Portal del Andino",
+    "needs": 3,
+    "has": 3
+  },
+  {
+    "name": "Puerto Grande",
+    "needs": 1,
+    "has": 1
+  },
+  {
+    "name": "Quijote",
+    "needs": 1,
+    "has": 2
+  },
+  {
+    "name": "Solares de Guarientos",
+    "needs": 4,
+    "has": 5
+  },
+  {
+    "name": "Stam",
+    "needs": 2,
+    "has": 1
+  },
+  {
+    "name": "Vacherie",
+    "needs": 14,
+    "has": 14
+  },
+  {
+    "name": "Valtronic",
+    "needs": 2,
+    "has": 2
+  },
+  {
+    "name": "Villa Atilia",
+    "needs": 6,
+    "has": 7
+  },
+  {
+    "name": "Vistalba Country",
+    "needs": 8,
+    "has": 8
+  }
+]
