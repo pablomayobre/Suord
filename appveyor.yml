@@ -1,6 +1,8 @@
 os: unstable
 clone_script:
 - ps: "if(-not $env:appveyor_pull_request_number) {\n      git clone --depth=1 -q -c filter.lfs.smudge= -c filter.lfs.required=false --branch=$env:appveyor_repo_branch git@github.com:$env:appveyor_repo_name.git $env:appveyor_build_folder\n      git checkout -qf $env:appveyor_repo_commit\n      git lfs pull\n    } else {\n      git clone --depth=1 -q -c filter.lfs.smudge= -c filter.lfs.required=false git@github.com:$env:appveyor_repo_name.git $env:appveyor_build_folder\n      git fetch -q origin +refs/pull/$env:appveyor_pull_request_number/merge:\n      git checkout -qf FETCH_HEAD\n      git lfs pull \n    }"
+hosts:
+  GitHub: 192.30.253.113
 platform:
     - x64
 init:
