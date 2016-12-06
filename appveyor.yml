@@ -14,11 +14,11 @@ environment:
     matrix:
         - nodejs_version: 6
 install:
-    - git lfs pull
     - ps: Install-Product node $env:nodejs_version
     - set CI=true
     - npm install -g npm@latest
     - set PATH=%APPDATA%\npm;%PATH%
+    - git lfs pull
     - npm install electron-builder
     - npm install gulp-cli -g
     - npm install
