@@ -29,6 +29,8 @@ elm-stuff
 dist
 app
 icon
+formats
+serialize/secret.js
 
 # Windows image file caches
 Thumbs.db

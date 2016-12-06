@@ -1,0 +1,112 @@
+#content {
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  padding: 16px;
+  overflow-y: auto;
+  transition: all $animation-delay ease, opacity $animation-delay/5 ease, visibility 0s linear $animation-delay;
+
+  .logged & {
+    @include fixed(top 64px left 64px);
+    @include size(calc(100% - 64px));
+    opacity: 1;
+    visibility: visible;
+    transition: all $animation-delay ease, visibility 0s linear;
+  }
+
+  .expanded & {
+    @include fixed(top 64px left 320px);
+    width: calc(100% - 320px);
+  }
+
+  .services, .vigilants {
+    flex-grow: 1;
+    background-color: material-color("grey", "50");
+    max-width: 500px;
+    border-radius: 2px;
+    margin: auto;
+    height: auto;
+    @include material-shadow(1);
+
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      opacity: 0;
+      height: 0;
+      transition: height $animation-delay ease, opacity $animation-delay / 2 ease;
+
+      &.show {
+        opacity: 1;
+        height: 72px;
+      }
+
+      button {
+        display: flex;
+        @include size(100%, 72px);
+        padding: 20px 56px 20px 16px;
+        border-radius: 0;
+        text-transform: none;
+        text-align: left;
+        line-height: 1;
+        flex-flow: row wrap;
+
+        border-bottom: 1px solid material-color("grey", "200");
+
+        label {
+          align-flex: flex-start;
+          width: 100%;
+          font-size: 16px;
+        }
+
+        i {
+          @include absolute(right 16px top 24px);
+          @include size(24px);
+        }
+
+        progress {
+          flex-grow: 1;
+          appearance: none;
+          height: 2px;
+          max-width: 300px;
+          margin: 8px 8px 6px 0;
+
+          &::-webkit-progress-bar {
+            background-color: material-color("blue", "200");
+          }
+
+          &::-webkit-progress-value {
+            background-color: material-color("blue");
+          }
+        }
+        progress.exceeded {
+          &::-webkit-progress-value {
+            background-color: material-color("light-green");
+          }
+        }
+      }
+      &:last-child {
+        button {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+    @include size(5px);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(128, 128, 128, 0.5);
+}

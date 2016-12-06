@@ -64,6 +64,10 @@ header {
         font-size: 20px;
         font-weight: 500;
         padding: 0 8px;
+        transition: opacity $animation-delay/2 ease;
+    }
+    h2.hide {
+      opacity: 0;
     }
 
     .icon.mdi-filter {

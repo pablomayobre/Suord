@@ -1,91 +1,92 @@
 {
-    "name": "Suord",
-    "productName": "Suord",
-    "version": "0.0.2",
-    "author": [
-        {
-            "name": "Pablo A. Mayobre (Positive07)",
-            "email": "pablo.a.mayobre@gmail.com",
-            "url": "https://positive07.github.io/"
-        },
-        {
-            "name": "Franco G. Mazzocca (Ralphref)",
-            "email": "francogabrielmazzocca@gmail.com"
-        }
-    ],
-    "summary": "Software de ubicacion de operarios en tareas remotas",
-    "main": "app.js",
-    "repository": "https://github.com/Positive07/Suord",
-    "description": "Aplicacion de Gardian",
-    "homepage": "https://github.com/Positive07/Suord",
-    "license": "MIT",
-    "devDependencies": {
-        "babel-preset-babili": "0.0.9",
-        "devtron": "^1.4.0",
-        "electron": "^1.4.10",
-        "electron-builder": "^8.6.0",
-        "electron-connect": "^0.6.0",
-        "gulp": "^3.9.1",
-        "gulp-autoprefixer": "^3.1.1",
-        "gulp-babel": "^6.1.2",
-        "gulp-cssnano": "^2.1.2",
-        "gulp-debug": "^2.1.2",
-        "gulp-install": "^0.6.0",
-        "gulp-json-editor": "^2.2.1",
-        "gulp-plumber": "^1.1.0",
-        "gulp-rename": "^1.2.2",
-        "gulp-sass": "^2.3.2",
-        "gulp-sourcemaps": "2.2.0"
+  "name": "Suord",
+  "productName": "Suord",
+  "version": "0.0.3",
+  "author": [
+    {
+      "name": "Pablo A. Mayobre (Positive07)",
+      "email": "pablo.a.mayobre@gmail.com",
+      "url": "https://positive07.github.io/"
     },
-    "elmDeps": {
-        "elm": "^0.18.0",
-        "gulp-elm": "^0.6.1"
-    },
-    "scripts": {
-        "gulp": "gulp",
-        "build": "build --ia32 --x64 --publish onTagOrDraft"
-    },
-    "babel": {
-        "presets": [
-            "babili"
-        ],
-        "comments": false
-    },
-    "build": {
-        "appId": "com.positive.suord",
-        "compression": "maximum",
-        "copyright": "Copyright (c) 2016 Pablo Mayobre Franco Mazzocca",
-        "linux": {
-            "maintainer": "Pablo Mayobre <pablo.a.mayobre@gmail.com>",
-            "target": [
-                "AppImage",
-                "deb",
-                "tar.xz"
-            ],
-            "synopsis": "Aplicacion de Gardian",
-            "category": "Office;Economy",
-            "desktop": "./build/Suord.desktop"
-        },
-        "win": {
-            "target": [
-                "nsis",
-                "zip"
-            ],
-            "remoteReleases": "https://github.com/Positive/Suord",
-            "publish": [
-                "github"
-            ],
-            "owner": "Pablo Mayobre <pablo.a.mayobre@gmail.com>",
-            "iconUrl": "(windows-only) https link to icon"
-        },
-        "mac": {
-            "category": "public.app-category.business"
-        },
-        "dmg": {
-            "backgroundColor": "#03a9f4"
-        },
-        "nsis": {
-            "language": 11274
-        }
+    {
+      "name": "Franco G. Mazzocca (Ralphref)",
+      "email": "francogabrielmazzocca@gmail.com"
     }
+  ],
+  "summary": "Software de ubicacion de operarios en tareas remotas",
+  "main": "main.js",
+  "repository": "https://github.com/Positive07/Suord",
+  "description": "Aplicacion de Gardian",
+  "homepage": "https://github.com/Positive07/Suord",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-babili": "0.0.9",
+    "devtron": "^1.4.0",
+    "electron": "^1.4.10",
+    "electron-builder": "^8.6.0",
+    "electron-connect": "^0.6.0",
+    "elm": "^0.18.0",
+    "eslint": "^3.11.1",
+    "eslint-plugin-import": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-debug": "^2.1.2",
+    "gulp-elm": "^0.6.1",
+    "gulp-if": "^2.0.2",
+    "gulp-install": "^0.6.0",
+    "gulp-json-editor": "^2.2.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "2.2.0"
+  },
+  "scripts": {
+    "gulp": "gulp",
+    "build": "build --ia32 --x64 --publish onTagOrDraft"
+  },
+  "babel": {
+    "presets": [
+      "babili"
+    ],
+    "comments": false
+  },
+  "build": {
+    "appId": "com.positive.suord",
+    "compression": "maximum",
+    "copyright": "Copyright (c) 2016 Pablo Mayobre Franco Mazzocca",
+    "linux": {
+      "maintainer": "Pablo Mayobre <pablo.a.mayobre@gmail.com>",
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.xz"
+      ],
+      "synopsis": "Aplicacion de Gardian",
+      "category": "Office;Economy",
+      "desktop": "./build/Suord.desktop"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "remoteReleases": "https://github.com/Positive/Suord",
+      "publish": [
+        "github"
+      ],
+      "owner": "Pablo Mayobre <pablo.a.mayobre@gmail.com>",
+      "iconUrl": "(windows-only) https link to icon"
+    },
+    "mac": {
+      "category": "public.app-category.business"
+    },
+    "dmg": {
+      "backgroundColor": "#03a9f4"
+    },
+    "nsis": {
+      "language": 11274
+    }
+  }
 }

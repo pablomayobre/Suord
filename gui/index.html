@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang"en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suord</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="script/jquery.js"></script>
+    <script src="script/lunr.js"></script>
+    <script type="text/javascript" src="page/Content.js"></script>
+    <script>window.Elm = require('./page/Content.js');</script>
+<head>
+
+<body>
+    <header>
+        <div class="app">
+            <img src="image/icon.png"/>
+            <h1>Suord</h1>
+        </div>
+        <div class="toolbar">
+            <button id="hamburger" class="icon" href="#">
+                <span class="lines"></span>
+                <div class="ripples white"><span class="ripple"></span></div>
+            </button>
+
+            <h2>Servicios</h2>
+
+            <div class="search">
+                <i class="i i-24px i-magnify"></i>
+                <div class="wrap">
+                    <input id="search" type="text">
+                    <label>Buscar</label>
+                </div>
+            </div>
+
+            <button class="icon i-filter i-24px i-light" type="button">
+                <div class="ripples white"><span class="ripple"></span></div>
+            </button>
+        </div>
+    </header>
+    <nav>
+      <button id="servicesButton" class="icon selected i-home-modern i-24px i-dark" type="button">
+        <label>Servicios</label>
+        <div class="ripples black"><span class="ripple"></span></div>
+      </button>
+      <button id="vigilantsButton" class="icon i-account i-24px i-dark" type="button">
+        <label>Vigilantes</label>
+        <div class="ripples black"><span class="ripple"></span></div>
+      </button>
+      <div class="hdivider"></div>
+      <button class="icon i-bell i-24px i-dark" type="button">
+        <label>Notificaciones</label>
+        <div class="ripples black"><span class="ripple"></span></div>
+      </button>
+      <div class="bottom">
+        <button class="icon i-settings i-24px i-dark" type="button">
+          <label>Configuración</label>
+          <div class="ripples black"><span class="ripple"></span></div>
+        </button>
+        <button id="logout" class="icon i-logout i-24px i-dark" type="button">
+          <label>Salir</label>
+          <div class="ripples black"><span class="ripple"></span></div>
+        </button>
+      </div>
+    </nav>
+    <form class="login">
+      <div class="group" id="username">
+        <input type="text" tabindex="0"><span class="bar"></span>
+        <label>Usuario</label>
+      </div>
+      <div class="group" id="password">
+        <input type="password" tabindex="1"><span class="bar"></span>
+        <label>Contraseña</label>
+      </div>
+      <button id="login" class="primary" type="button" tabindex="2">Entrar
+        <div class="ripples black"><span class="ripple"></span></div>
+      </button>
+    </form>
+    <div id="content">
+      <div class="list">
+      </div>
+    </div>
+
+    <script>
+        window.$ = require('./script/jquery.js');
+
+        let screen = 'Services';
+
+        let vigilants = [
+          {
+            name: 'Franco Mazzocca',
+            assign: 'HACER LAS FUCKING TABLAS'
+          },
+          {
+            name: 'Pablo Mayobre',
+            assign: 'ESPERAR A FUCKING FRANCO'
+          },
+          {
+            name: 'Esperaar',
+            assign: 'SI ESPERAR ESPERAAAAAR'
+          }
+        ];
+
+        let services = [
+          {
+            name: 'Agricola Lujan',
+            needs: 1,
+            has: 2,
+          },
+          {
+            name: 'Andreu',
+            needs: 8,
+            has: 5,
+          },
+          {
+            name: 'APROCAM',
+            needs: 1,
+            has: 1,
+          },
+          {
+            name: 'Ayres de Campo',
+            needs: 3,
+            has: 4,
+          },
+          {
+            name: 'Ballio',
+            needs: 1,
+            has: 0,
+          },
+          {
+            name: 'Barraca',
+            needs: 10,
+            has: 4,
+          },
+          {
+            name: 'BGA Tapiz',
+            needs: 2,
+            has: 2,
+          },
+          {
+            name: 'Bocard',
+            needs: 2,
+            has: 2,
+          },
+          {
+            name: 'Bodega Bondeguer',
+            needs: 2,
+            has: 3,
+          },
+          {
+            name: 'Casa Andreu',
+            needs: 1,
+            has: 2,
+          },
+          {
+            name: 'Casa Mc Donalds',
+            needs: 1,
+            has: 0,
+          },
+        ];
+
+        let lunr = window.lunr || require('./script/lunr.js')
+        let index = {
+          Services: lunr(function () {
+            this.field('name');
+            this.ref('id');
+            this.pipeline.remove(lunr.stopWordFilter);
+          }),
+          Vigilants: lunr(function () {
+            this.field('name');
+            this.field('assign');
+            this.ref('id');
+            this.pipeline.remove(lunr.stopWordFilter);
+          }),
+        }
+
+        for(var key = 0; key < services.length; key++) {
+          index.Services.add({
+            id: key,
+            name: services[key].name,
+          });
+        }
+        for(var key = 0; key < vigilants.length; key++) {
+          index.Vigilants.add({
+            id: key,
+            name: vigilants[key].name,
+            assign: vigilants[key].assign,
+          });
+        }
+
+        let Content = Elm.Content.embed(document.getElementById('content'), {services, vigilants});
+
+        function range (n) {
+          return Array.from(new Array(n), (x,i) => i)
+        };
+
+        $('#search').on('input', function() {
+          let val = $(this).val();
+          let entry = `show${screen}`
+          if (val) {
+            let idx = index[screen].search(val);
+            Content.ports[entry].send(idx.map((obj) => obj.ref));
+          } else {
+            Content.ports[entry].send(range(services.length));
+          }
+        });
+
+        $('input').blur(function() {
+            var $this = $(this);
+            if ($this.val())
+                $this.addClass('used');
+            else
+                $this.removeClass('used');
+        });
+
+
+        var $ripples = $('.ripples');
+
+        $ripples.on('click.Ripples', function(e) {
+
+            var $this = $(this);
+            var $offset = $this.parent().offset();
+            var $circle = $this.find('.ripple');
+
+            var x = e.pageX - $offset.left;
+            var y = e.pageY - $offset.top;
+
+            $circle.css({
+                top: y + 'px',
+                left: x + 'px'
+            });
+
+            $this.addClass('is-active');
+
+        });
+
+        $ripples.on('animationend webkitAnimationEnd', function(e) {
+            $(this).removeClass('is-active');
+        });
+
+        $("#hamburger").click(function(){
+            $("body").toggleClass("expanded");
+        });
+
+        var $username = $('#username input');
+        var $password = $('#password input');
+
+        var $login  = $('#login' );
+        var $logout = $("#logout");
+
+        $username.on("keydown", function (e){
+            if (e.keyCode == 13 || e.keyCode == 9 || e.keyCode == 40){
+                $password.focus();
+                e.stopPropagation();
+                return false;
+            }
+        });
+        $password.on("keydown", function (e){
+            if (e.keyCode == 13 || e.keyCode == 9 || e.keyCode == 40){
+                $login.focus();
+                e.stopPropagation();
+                return false;
+            } else if (e.keyCode == 38){
+                $username.focus();
+                e.stopPropagation();
+                return false;
+            }
+        })
+
+        $("button").click(function(){
+            $(this).blur();
+        })
+
+        $login.on('click', function (e){
+            if ($username.val() != "Mazzocca Franco" && $password.val() != "1234"){
+                $username.addClass("error").removeClass("used");
+                $password.addClass("error").removeClass("used");
+            } else {
+                $("body").addClass("logged");
+            }
+
+            $username.val("");
+            $password.val("");
+
+            //e.stopPropagation();
+            //return false;
+        });
+
+        $('#servicesButton').on('click', function (e){
+            if (screen !== 'Services'){
+              screen = 'Services';
+              Content.ports.changeScreen.send(screen);
+              Content.ports.showVigilants.send(range(vigilants.length));
+              $('#search').val = '';
+              $('body').addClass('servicesOn');
+              $('body').removeClass('vigilantsOn');
+              $('nav button.selected').removeClass('selected');
+              $(this).addClass('selected');
+              $('.toolbar h2').addClass('hide');
+            }
+        });
+        $('#vigilantsButton').on('click', function (e){
+            if (screen !== 'Vigilants'){
+              screen = 'Vigilants';
+              Content.ports.changeScreen.send(screen);
+              Content.ports.showVigilants.send(range(vigilants.length));
+              $('#search').val = '';
+              $('body').addClass('vigilantsOn');
+              $('body').removeClass('servicesOn');
+              $('nav button.selected').removeClass('selected');
+              $(this).addClass('selected');
+              $('.toolbar h2').addClass('hide');
+            }
+        });
+
+        let titulo = {
+          Services: 'Servicios',
+          Vigilants: 'Vigilantes',
+        };
+
+        $('.toolbar h2').on('transitionend webkitTransitionEnd', function(e) {
+            $(this).removeClass('hide');
+            $(this).text(titulo[screen]);
+        });
+
+        $logout.on('click', function (){
+            if ($("body").hasClass("logged"))
+                $("body").removeClass("logged");
+            if ($("body").hasClass("expanded"))
+                $("body").removeClass("expanded");
+        });
+    </script>
+
+    <script>
+        var ipcRenderer = require('electron').ipcRenderer
+        ipcRenderer.once("debug", function (e, arg){
+          console.log(arg);
+            if (arg === true)
+                window.debug = true;
+
+            var contextmenu = require('./script/context-menu.js');
+            var inputmenu   = require('./script/input-menu.js'  );
+            var debugmenu   = require('./script/debug-menu.js'  );
+
+            inputmenu.registerShortcuts();
+
+            contextmenu.use(inputmenu);
+            if (window.debug)
+                contextmenu.use(debugmenu.middleware);
+            contextmenu.activate();
+        });
+
+        ipcRenderer.send("debug", "ready");
+    </script>
+</body>
+
+</html>

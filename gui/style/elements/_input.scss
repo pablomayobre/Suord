@@ -8,7 +8,6 @@
     	-webkit-appearance: none;
     	display: block;
     	background: transparent;
-    	color: #636363;
     	width: 100%;
     	border: none;
     	border-radius: 0;
@@ -53,13 +52,13 @@
 
     /* Error State */
     input.error ~ label {
-      color: #F00;
+      color: material-color("red");
     }
     input.error ~ .bar::before, input.error ~ .bar::after {
-      background: #F00;
+      background: material-color("red");
     }
     input.error {
-    	border-bottom: 1px solid #f00;
+    	border-bottom: 1px solid material-color("red");
     }
 
     /* Active State */
