@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=Suord
-Comment=Aplicacion de Gardian
-Exec=suord
-Categories=Office;Economy
-Icon=icon.png
-Terminal=false
