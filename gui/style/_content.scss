@@ -72,9 +72,14 @@
           margin: 8px 8px 6px 0;
 
           &::-webkit-progress-bar {
-            background-color: material-color("blue", "200");
+            background-color: material-color("red", "100");
           }
 
+          &::-webkit-progress-value {
+            background-color: material-color("red");
+          }
+        }
+        progress.complete {
           &::-webkit-progress-value {
             background-color: material-color("blue");
           }

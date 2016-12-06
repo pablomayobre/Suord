@@ -253,6 +253,9 @@ serviceItem services index service =
         exceeded =
             service.has > service.needs
 
+        complete =
+            service.has >= service.needs
+
         progressText =
             (toString service.has) ++ "/" ++ (toString service.needs)
     in
@@ -265,7 +268,7 @@ serviceItem services index service =
                 , progress
                     [ Html.Attributes.max (toString service.needs)
                     , value (toString progressValue)
-                    , classList [ ( "exceeded", exceeded ) ]
+                    , classList [ ( "exceeded", exceeded ), ( "complete", complete ) ]
                     ]
                     []
                 , span [] [ text progressText ]
