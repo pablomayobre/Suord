@@ -20,7 +20,7 @@
   "homepage": "https://github.com/Positive07/Suord",
   "license": "MIT",
   "devDependencies": {
-    "babel-preset-babili": "0.0.9",
+    "babel-preset-babili": "0.1.4",
     "devtron": "^1.4.0",
     "electron": "^1.4.10",
     "electron-builder": "^8.6.0",
