@@ -22,7 +22,7 @@
   "devDependencies": {
     "babel-preset-babili": "0.0.9",
     "devtron": "^1.4.0",
-    "electron": "^1.4.10",
+    "electron": "^6.0.3",
     "electron-builder": "^8.6.0",
     "electron-connect": "^0.6.0",
     "elm": "^0.18.0",
